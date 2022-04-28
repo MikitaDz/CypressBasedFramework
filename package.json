@@ -1,0 +1,23 @@
+{
+  "name": "cypressbasedframework",
+  "version": "1.0.0",
+  "description": "JS framework for web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikitaDz/CypressBasedFramework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikitaDz/CypressBasedFramework/issues"
+  },
+  "homepage": "https://github.com/MikitaDz/CypressBasedFramework#readme",
+  "devDependencies": {
+    "cypress": "^9.6.0"
+  }
+}
