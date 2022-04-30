@@ -1,3 +1,6 @@
 {
-    "baseUrl": "https://www.deinbett.de"
+    "baseUrl": "https://www.deinbett.de",
+    "login": "",
+    "password": "",
+    "testFiles": "**/*.feature"
 }
