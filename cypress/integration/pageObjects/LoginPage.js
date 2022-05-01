@@ -16,6 +16,10 @@ class LoginPage {
         //submit form
         cy.get('#login-submit').click();
     }
+
+    verifyIncorrectLoginLabelPresent() {
+        cy.get('#loginEmail-error').should('be.visible');
+    }
 }
 
 export default LoginPage
