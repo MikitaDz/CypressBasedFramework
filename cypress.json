@@ -1,5 +1,6 @@
 {
     "baseUrl": "https://www.deinbett.de",
+    "loginAPIURL": "/api/global/login",
     "login": "",
     "password": "",
     "testFiles": "**/*.feature"

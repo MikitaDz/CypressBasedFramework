@@ -18,7 +18,8 @@ class LoginPage {
     }
 
     verifyIncorrectLoginLabelPresent() {
-        cy.get('#loginEmail-error').should('be.visible');
+        cy.get('#loginEmail-error')
+            .should('be.visible');
     }
 }
 
