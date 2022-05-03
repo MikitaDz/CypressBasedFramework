@@ -4,5 +4,6 @@
     "watchForFileChanges": false,
     "login": "",
     "password": "",
-    "testFiles": "**/*.feature"
+    "testFiles": "**/*.feature",
+    "video": false
 }

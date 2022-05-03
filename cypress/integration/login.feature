@@ -14,4 +14,4 @@ Scenario:
 
   Then the url is /login
 
-  AND I see label about incorrect credentials
+  Then I see label about incorrect credentials
