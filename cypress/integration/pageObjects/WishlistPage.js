@@ -1,6 +1,6 @@
 //Cypress team doesn't suggest using PO pattern btw https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions/  
 
-class BettenPage {
+class WishlistPage {
 
     visit() {
         cy.visit('/wunschliste');
@@ -13,13 +13,14 @@ class BettenPage {
 
     //Add all items to shopping card
     addAllItemsToShoppingCard() {
-        cy.get('#addAddToWishlist').click;
+        cy.get('#addAddToWishlist').click();
+        cy.contains('Zum Warenkorb').click();
     }
 
     //Get number of items in the list
     getWishlistItemsNumber() {
-        //ToDO
+        return cy.get('.wishlist__articleList').children('.wishlistEntry').its('length');
     }
 }
 
-export default BettenPage
+export default WishlistPage

@@ -11,12 +11,13 @@ class BettenPage {
     addToWishlist(number) {
         cy.get('.articleTile__content').each(($el, index) => {
 
-            //
-            if (index > (number - 1)) {
+            //as index start from zero, counting till number - 1
+            if (index > (number)) {
                 // stop iteration
                 return false
             }
-            //added mouseover on  as sometimes 
+
+            //added mouseover (no hover in the Cypress) on item as sometimes elements overlay happened
             cy.wrap($el).trigger('mouseover');
             cy.wrap($el).within(($el) => {
                 cy.get('.articleTile__wishlist').click();
