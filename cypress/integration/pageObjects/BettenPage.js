@@ -11,7 +11,6 @@ class BettenPage {
     addToWishlist(number) {
         cy.get('.articleTile__content').each(($el, index) => {
 
-            //as index start from zero, counting till number - 1
             if (index > (number)) {
                 // stop iteration
                 return false

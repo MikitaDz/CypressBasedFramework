@@ -18,9 +18,11 @@
     },
     "homepage": "https://github.com/MikitaDz/CypressBasedFramework#readme",
     "devDependencies": {
+        "@faker-js/faker": "^6.3.1",
         "cypress": "^9.6.0",
         "cypress-cucumber-preprocessor": "^4.3.1",
-        "multiple-cucumber-html-reporter": "^1.20.0"
+        "multiple-cucumber-html-reporter": "^1.20.0",
+        "smtp-tester": "^1.2.0"
     },
     "cypress-cucumber-preprocessor": {
         "nonGlobalStepDefinitions": true,

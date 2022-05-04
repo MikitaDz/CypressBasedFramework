@@ -1,6 +1,13 @@
 Feature: LogInFeature
 
 Scenario:
+  Given I open registration page
+
+  When I register a new user
+
+  Then the url is /registrierung
+
+Scenario:
   Given I open login page
 
   When I log in by default user

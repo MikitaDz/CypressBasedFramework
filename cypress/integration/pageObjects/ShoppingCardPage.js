@@ -45,12 +45,13 @@ class ShoppingCardPage {
 
     //Getting elements calculated value excluding shipping
     //Also in case if calculation logic is on the backend, I would suggest to validate it via API in a real world
-    //As the calculations below can be fragile
+    //As the calculations below can be fragile and passing variables via aliases in Cypress is a bit crazy :)
     getCalculatedValueExcludingShipping() {
 
         //looping through each shopping card entry
         cy.get('.cartEntry').each(($el, index) => {
             cy.wrap($el).within(($el) => {
+                //getting integer price part
                 cy.get('.articlePrice__integer')
                     .first()
                     .then(($el) => {
@@ -59,12 +60,14 @@ class ShoppingCardPage {
                         cy.wrap($el.text().replace('.', '')).as('integerItemPrice');
                     });
                 cy.get('@integerItemPrice').then(function() {
+                    //getting float price part
                     cy.get('.articlePrice__fraction')
                         .first()
                         .then(($el) => {
                             cy.log($el.text());
                             cy.wrap($el.text()).as('fractionItemPrice');
                             var totalItemsPrice = parseFloat(this.integerItemPrice + '.' + this.fractionItemPrice);
+                            //looping through all elements and summarizing prices
                             if (index > 0) {
                                 cy.get('@' + (index - 1) + '_itemTotal').then(text => {
                                     cy.log('Calculation of summary price');

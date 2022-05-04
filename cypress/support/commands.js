@@ -1,4 +1,6 @@
-//API Login command
+import { faker } from '@faker-js/faker';
+
+//Performs API login
 Cypress.Commands.add('apiLogin', (email, password) => {
 
     //We are getting csrf token first via parsing html
@@ -20,4 +22,23 @@ Cypress.Commands.add('apiLogin', (email, password) => {
                 },
             })
         });
+})
+
+//Generates random user
+Cypress.Commands.add('generateRandomUser', () => {
+
+    //generation of fake data via faker lib
+    const randomFirstName = faker.name.firstName(); // Rowan
+    const randomLastName = faker.name.lastName(); // Rowan
+    const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+
+    //password created by lib is not strong enough - so hard-coded good one temporary
+    const password = "123qweasdY$2"; // 
+    cy.log(randomEmail);
+    cy.log(password);
+
+    var user = { firstName: randomFirstName, lastName: randomLastName, email: randomEmail, password: password };
+
+    //creating user object and writing it to file
+    return cy.wrap(user)
 })
