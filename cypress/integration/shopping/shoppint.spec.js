@@ -1,13 +1,28 @@
 import BettenPage from '../pageObjects/BettenPage';
 import WishlistPage from '../pageObjects/WishlistPage';
 import ShoppingCardPage from '../pageObjects/ShoppingCardPage';
+import RegistrationPage from '../pageObjects/RegistrationPage';
 import { Given, When, Then, Before, And } from 'cypress-cucumber-preprocessor/steps';
 const bettenPage = new BettenPage();
 const wishlistPage = new WishlistPage();
 const shoppingCardPage = new ShoppingCardPage();
-
+const registrationPage = new RegistrationPage();
+var loggedIn;
 
 Before(() => {
+    //if user is not created yet, let's register a new one. Perhaps this better should be done via API
+    if (Cypress.env('login') === "" && Cypress.env('password') === "") {
+        cy.setCookie('optOutAccepted', 'true');
+        registrationPage.visit();
+        cy.generateRandomUser().then(data => {
+            cy.log(data);
+            registrationPage.register(data.firstName, data.lastName, data.email, data.password);
+            Cypress.env('login', data.email);
+            Cypress.env('password', data.password);
+        })
+        loggedIn = true;
+    }
+
     //I disable cookies acceptance form by setting corresponding cookie to true.
     //Proper acceptance screnario definitely should be covered, but in a separate test
     cy.setCookie('optOutAccepted', 'true');
@@ -23,8 +38,12 @@ beforeEach(function() {
 //I would prefer to login via API in all scenarios except Login itself
 //It adds more stability
 Given('I logged in by default user via API', () => {
+
+    //skipping api login if we have already logged in
     cy.visit('/');
-    cy.apiLogin(Cypress.env('login'), Cypress.env('password'));
+    if (!(loggedIn === true)) {
+        cy.apiLogin(Cypress.env('login'), Cypress.env('password'));
+    }
     cy.reload();
 })
 
@@ -75,5 +94,3 @@ Then('I see correctly calculated summary price of all {int} items in the shoppin
         })
     })
 })
-
-//"watchForFileChanges": false,
