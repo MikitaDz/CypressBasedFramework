@@ -1,0 +1,26 @@
+name: Check IP and List Files
+
+on:
+  push:
+    branches:
+      - '**'
+  schedule:
+    - cron: '0 6,18 * * *'
+
+jobs:
+  check-ip-and-list-files:
+    if: github.event_name == 'push' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print external IP
+        run: |
+          echo "Server public IP:"
+          curl -s https://api.ipify.org
+
+      - name: List files
+        run: |
+          echo "Repository file list:"
+          ls -alR
